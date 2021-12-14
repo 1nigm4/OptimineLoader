@@ -7,28 +7,28 @@ using System.Text;
 
 namespace OptimineLoader
 {
-    class Hashes
+    class VersionChecker
     {
-        private static string _sBaseHashes = string.Empty;
+        public string ActualHashes;
         private const bool _COMPONENTNOTFOUND = false;
-        public static void DownloadHashes()
+        public bool DownloadHashes()
         {
             try
             {
                 ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;
                 using (WebClient webClient = new WebClient())
                 {
-                    _sBaseHashes = webClient.DownloadString(Config.WebDir + Config.WebHashes);
+                    ActualHashes = webClient.DownloadString(Config.WebDir + Config.WebHashes);
                 }
-                Loader.Connection = _sBaseHashes != string.Empty;
+                return ActualHashes != string.Empty;
             }
-            catch (WebException)
+            catch
             {
-                Loader.Connection = false;
+                return false;
             }
             
         }
-        public static bool IsLegalFile(string path)
+        public bool IsLegalFile(string path)
         {
             try
             {
@@ -39,13 +39,13 @@ namespace OptimineLoader
                     stream.Read(fileData, 0, (int)stream.Length);
                     byte[] checkSum = md5.ComputeHash(fileData);
                     string result = BitConverter.ToString(checkSum).Replace("-", String.Empty).ToLower();
-                    return _sBaseHashes.Contains(result);
+                    return ActualHashes.Contains(result);
                 }
             }
             catch { return _COMPONENTNOTFOUND; }
         }
 
-        public static bool IsLegalDir(string path)
+        public bool IsLegalDir(string path)
         {
             try
             {
@@ -63,7 +63,7 @@ namespace OptimineLoader
                         md5.TransformFinalBlock(contentBytes, 0, contentBytes.Length);
                 }
                 var result = BitConverter.ToString(md5.Hash).Replace("-", string.Empty).ToLower();
-                return _sBaseHashes.Contains(result);
+                return ActualHashes.Contains(result);
             }
             catch { return _COMPONENTNOTFOUND; }
         }

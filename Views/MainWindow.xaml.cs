@@ -3,7 +3,7 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 
-namespace OptimineLoader
+namespace OptimineLoader.Views
 {
     public partial class MainWindow : Window
     {
@@ -19,7 +19,7 @@ namespace OptimineLoader
             Config.JavaName = $"{Config.JavaName}{osBin}.zip";
             Config.JavaPath += osBin;
 
-            Hashes.DownloadHashes();
+            //VersionChecker.DownloadHashes();
             
             if (Loader.Connection)
                 loader.ComponentsExists();

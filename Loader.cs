@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OptimineLoader.Views;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
@@ -38,9 +39,9 @@ namespace OptimineLoader
             if (!Directory.Exists(Config.SystemPath))
                 Directory.CreateDirectory(Config.SystemPath);
 
-            if (!Hashes.IsLegalDir(Config.JavaPath))
+            if (!VersionChecker.IsLegalDir(Config.JavaPath))
                 _missingComponents.Add("java");
-            if (!Hashes.IsLegalFile(Config.LauncherPath))
+            if (!VersionChecker.IsLegalFile(Config.LauncherPath))
                 _missingComponents.Add("launcher");
         }
 
