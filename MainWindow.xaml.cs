@@ -15,19 +15,19 @@ namespace OptimineLoader
                 Window = this
             };
 
-            var osBin = Environment.Is64BitOperatingSystem ? "64" : "32";
+            var osBin = Environment.Is64BitOperatingSystem ? "64" : "86";
             Config.JavaName = $"{Config.JavaName}{osBin}.zip";
             Config.JavaPath += osBin;
 
-            Hashes.DownloadHashes();
-            
-            if (Loader.Connection)
+            try
+            {
                 loader.ComponentsExists();
-            else
+            }
+            catch
             {
                 InitializeComponent();
                 CurrentOperation.Foreground = Brushes.Red;
-                CurrentOperation.Text = "Нет соединения с сервером";
+                CurrentOperation.Text = "Ошибка соединения с сервером!";
             }
         }
 

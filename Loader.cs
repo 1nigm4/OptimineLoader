@@ -20,8 +20,14 @@ namespace OptimineLoader
 
         public void ComponentsExists()
         {
-            CheckDirsAndComponents();
-
+            if (!Directory.Exists(Config.ProjectDir))
+            {
+                Directory.CreateDirectory(Config.ProjectDir);
+                Directory.CreateDirectory(Config.SystemPath);
+                _missingComponents.Add("launcher");
+                _missingComponents.Add("java");
+            }
+                
             if (_missingComponents.Count == 0)
                 Launcher.Start();
             else
@@ -29,19 +35,6 @@ namespace OptimineLoader
                 Window.InitializeComponent();
                 DownloadComponents();
             }
-        }
-
-        private void CheckDirsAndComponents()
-        {
-            if (!Directory.Exists(Config.ProjectDir))
-                Directory.CreateDirectory(Config.ProjectDir);
-            if (!Directory.Exists(Config.SystemPath))
-                Directory.CreateDirectory(Config.SystemPath);
-
-            if (!Hashes.IsLegalDir(Config.JavaPath))
-                _missingComponents.Add("java");
-            if (!Hashes.IsLegalFile(Config.LauncherPath))
-                _missingComponents.Add("launcher");
         }
 
         private void DownloadComponents()

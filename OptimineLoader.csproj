@@ -98,7 +98,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Hashes.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="Launcher.cs" />
     <Compile Include="Loader.cs" />
