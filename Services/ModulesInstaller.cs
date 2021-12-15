@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.IO.Compression;
-using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 
@@ -22,7 +21,7 @@ namespace OptimineLoader.Services
             MissingModules = modules;
         }
 
-        public void DownloadModules()
+        public async void DownloadModules()
         {
             foreach (var missingModule in MissingModules)
             {
@@ -44,7 +43,7 @@ namespace OptimineLoader.Services
                 {
                     web.DownloadFileCompleted += DownloadedFile;
                     web.DownloadProgressChanged += ProgressBarDownloading;
-                    web.DownloadFile(moduleUri, downloadPath);
+                    await Task.Run(() => web.DownloadFile(moduleUri, downloadPath));
                 }
             }
         }
