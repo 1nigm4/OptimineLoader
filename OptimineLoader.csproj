@@ -9,6 +9,7 @@
     <RootNamespace>OptimineLoader</RootNamespace>
     <AssemblyName>OptimineLoader</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <LangVersion>8.0</LangVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
@@ -99,11 +100,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Configuration.cs" />
-    <Compile Include="Services\ModuleInstaller.cs" />
-    <Compile Include="Services\VersionChecker.cs" />
-    <Compile Include="Config.cs" />
-    <Compile Include="Launcher.cs" />
-    <Compile Include="Loader.cs" />
+    <Compile Include="Services\ModulesChecker.cs" />
+    <Compile Include="Services\ModulesInstaller.cs" />
+    <Compile Include="Models\Launcher.cs" />
     <Compile Include="Models\Module.cs" />
     <Compile Include="Models\ProgressBar.cs" />
     <Compile Include="ViewModels\Base\ViewModel.cs" />
@@ -127,9 +126,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Background.PNG" />
-  </ItemGroup>
-  <ItemGroup>
     <Page Include="Views\MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -148,11 +144,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\favicon.ico" />
+    <Resource Include="Resources\Background.PNG" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="icon.jpg" />
+    <Resource Include="Resources\favicon.ico" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,37 +1,36 @@
-﻿using System;
+﻿using OptimineLoader.ViewModels;
+using System;
 using System.Windows;
 using System.Windows.Input;
-using System.Windows.Media;
 
 namespace OptimineLoader.Views
 {
     public partial class MainWindow : Window
     {
-        public static bool InitializedWindow { get; set; }
+        private Point _mouseOffset;
+
         public MainWindow()
         {
-            Loader loader = new Loader
-            {
-                Window = this
-            };
-
-            var osBin = Environment.Is64BitOperatingSystem ? "64" : "32";
-            Config.JavaName = $"{Config.JavaName}{osBin}.zip";
-            Config.JavaPath += osBin;
-
-            //VersionChecker.DownloadHashes();
             
-            if (Loader.Connection)
-                loader.ComponentsExists();
-            else
+
+            MainWindowViewModel viewModel = new MainWindowViewModel();
+            DataContext = viewModel;
+            if (viewModel.MissingModules.Count != 0)
             {
                 InitializeComponent();
-                CurrentOperation.Foreground = Brushes.Red;
-                CurrentOperation.Text = "Нет соединения с сервером";
+                try
+                {
+                    viewModel.Installer.DownloadModules();
+                }
+                catch
+                {
+                    viewModel.ProgressBar.Details = "Ошибка соединения с сервером";
+                    DownloadBar.IsIndeterminate = false;
+                }
             }
+            else
+                Launcher.Start();
         }
-
-        private Point _mouseOffset;
 
         private void Window_onMouseDown(object sender, MouseButtonEventArgs e) => _mouseOffset = e.GetPosition(this);
 
