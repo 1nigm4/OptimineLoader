@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.IO;
 using System.IO.Compression;
 using System.Net;
+using System.Threading.Tasks;
 
 namespace OptimineLoader.Services
 {
@@ -25,6 +26,7 @@ namespace OptimineLoader.Services
 
         private void MissingModules_onClear(object sender, NotifyCollectionChangedEventArgs e)
         {
+            PBar.Details = "Запускаем лаунчер";
             Launcher.Start();
         }
 
@@ -48,16 +50,15 @@ namespace OptimineLoader.Services
 
                 using (WebClient web = new WebClient())
                 {
-                    web.DownloadFileCompleted += DownloadedFile;
-                    web.DownloadProgressChanged += ProgressBarDownloading;
-                    
+                    web.DownloadProgressChanged += Module_onDownloading;
                     await web.DownloadFileTaskAsync(moduleUri, downloadPath);
+                    await Task.Run(Module_onDownloaded);
                 }
             }
             MissingModules.Clear();
         }
 
-        private void ProgressBarDownloading(object sender, DownloadProgressChangedEventArgs e)
+        private void Module_onDownloading(object sender, DownloadProgressChangedEventArgs e)
         {
             int percent = e.ProgressPercentage;
 
@@ -67,11 +68,12 @@ namespace OptimineLoader.Services
                 PBar.JavaInstallingValue = percent * (MissingModules.Count == 1 ? 1 : 0.85);
         }
 
-        private void DownloadedFile(object sender, AsyncCompletedEventArgs e)
+        private void Module_onDownloaded()
         {
             if (CurrentModule == Module.Java)
                 InstallJava();
         }
+
         private void InstallJava()
         {
             PBar.Details = "Развёртывание Java";
