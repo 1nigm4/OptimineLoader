@@ -11,22 +11,12 @@ namespace OptimineLoader.Views
 
         public MainWindow()
         {
-            
-
             MainWindowViewModel viewModel = new MainWindowViewModel();
             DataContext = viewModel;
             if (viewModel.MissingModules.Count != 0)
             {
                 InitializeComponent();
-                try
-                {
-                    viewModel.Installer.DownloadModules();
-                }
-                catch
-                {
-                    viewModel.ProgressBar.Details = "Ошибка соединения с сервером";
-                    DownloadBar.IsIndeterminate = false;
-                }
+                viewModel.Installer.DownloadModulesAsync();
             }
             else
                 Launcher.Start();

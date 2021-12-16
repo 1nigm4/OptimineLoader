@@ -44,6 +44,6 @@
         <TextBlock Text="{Binding ProgressBar.Details}" TextAlignment="Center" Margin="83,401,637,47" Foreground="#FFC8C8C8" FontWeight="Bold" FontFamily="Arial Black" Padding="5" TextWrapping="Wrap"/>
 
         <xrpb:RadialProgressBar Name="DownloadBar" Margin="94,199,648,143" Foreground="#FF4BE8E1" InnerBackgroundBrush="#FF3F4551" OuterBackgroundBrush="Transparent" Background="#00000000" Padding="15" IndeterminateSpeedRatio="0.5" ArcWidth="5" IsIndeterminate="True" IsHitTestVisible="False"/>
-        <Label Content="{Binding ProgressBar.CurrentValue, StringFormat=' {0}%'}" Margin="83,256,637,210" Background="#00000000" Foreground="#FF5CDA8B" FontSize="24" FontWeight="Bold" FontFamily="Arial" Width="180" HorizontalContentAlignment="Center"/>
+        <Label Name="Details" Content="{Binding ProgressBar.CurrentValue, StringFormat=' {0}%'}" Margin="83,256,637,210" Background="#00000000" Foreground="#FF5CDA8B" FontSize="24" FontWeight="Bold" FontFamily="Arial" Width="180" HorizontalContentAlignment="Center"/>
     </Grid>
 </Window>

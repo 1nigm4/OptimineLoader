@@ -11,12 +11,11 @@ namespace OptimineLoader.Services
             List<Module> MissingModules = new List<Module>();
 
             Directory.CreateDirectory(Configuration.UpdatesFolderPath);
+
+            if (!File.Exists(Configuration.LauncherPath))
+                MissingModules.Add(Module.Launcher);
             if (!Directory.Exists(Configuration.JavaFolderPath))
                 MissingModules.Add(Module.Java);
-
-            string launcherPath = Configuration.UpdatesFolderPath + "\\" + "Optimine.jar";
-            if (!File.Exists(launcherPath))
-                MissingModules.Add(Module.Launcher);
 
             return MissingModules;
         }
