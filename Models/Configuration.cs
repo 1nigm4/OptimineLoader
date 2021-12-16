@@ -19,7 +19,7 @@ namespace OptimineLoader.Models
             LauncherPath = UpdatesFolderPath + "\\" + "Optimine.jar";
             JavaVersion = "jre-win" + OsBit;
             JavaFolderPath = $@"{UpdatesFolderPath}\{JavaVersion}";
-            WebDir = "https://1nigm4.github.io/"; //https://launch.optimine.su/
+            WebDir = Properties.Resources.WebDir;
         }
     }
 }
