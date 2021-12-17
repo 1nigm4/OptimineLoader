@@ -29,4 +29,4 @@ using System.Runtime.InteropServices;
 //      Редакция
 //
 [assembly: AssemblyVersion("0.0.0.0")]
-[assembly: AssemblyFileVersion("0.0.0.0")]
+[assembly: AssemblyFileVersion("0.0.1.1")]
