@@ -1,36 +1,26 @@
-﻿using System;
+﻿using OptimineLoader.Services;
+using OptimineLoader.ViewModels;
+using System;
 using System.Windows;
 using System.Windows.Input;
-using System.Windows.Media;
 
-namespace OptimineLoader
+namespace OptimineLoader.Views
 {
     public partial class MainWindow : Window
     {
         private Point windowOffset;
         private Point mouseOffset;
-        public static bool InitializedWindow { get; set; }
-        public MainWindow()
+
+        private void Window_onLoaded(object sender, RoutedEventArgs e)
         {
-            Loader loader = new Loader
-            {
-                Window = this
-            };
-
-            var osBin = Environment.Is64BitOperatingSystem ? "64" : "86";
-            Config.JavaName = $"{Config.JavaName}{osBin}.zip";
-            Config.JavaPath += osBin;
-
-            try
-            {
-                loader.ComponentsExists();
-            }
-            catch
+            MainWindowViewModel viewModel = (MainWindowViewModel)DataContext;
+            if (viewModel.MissingModules.Count != 0)
             {
                 InitializeComponent();
-                CurrentOperation.Foreground = Brushes.Red;
-                CurrentOperation.Text = "Ошибка соединения с сервером!";
+                viewModel.Installer.DownloadModulesAsync();
             }
+            else
+                OptimineLauncher.Start();
         }
 
         private void Window_onMouseDown(object sender, MouseButtonEventArgs e)
@@ -44,7 +34,7 @@ namespace OptimineLoader
             if (e.LeftButton == MouseButtonState.Pressed)
             {
                 Point mousePosition = e.GetPosition(this);
-                windowOffset += (mousePosition - mouseOffset);
+                windowOffset += mousePosition - mouseOffset;
                 this.Left = windowOffset.X;
                 this.Top = windowOffset.Y;
             }

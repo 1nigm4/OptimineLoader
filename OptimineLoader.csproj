@@ -9,6 +9,7 @@
     <RootNamespace>OptimineLoader</RootNamespace>
     <AssemblyName>OptimineLoader</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <LangVersion>8.0</LangVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
@@ -83,7 +84,8 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
-    <Reference Include="XamlRadialProgressBar.DotNet">
+    <Reference Include="XamlRadialProgressBar.DotNet, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\XamlRadialProgressBar.1.0.3\lib\net452\XamlRadialProgressBar.DotNet.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>
@@ -96,14 +98,19 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Config.cs" />
-    <Compile Include="Launcher.cs" />
-    <Compile Include="Loader.cs" />
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="Services\OptimineLauncher.cs" />
+    <Compile Include="Services\ModulesChecker.cs" />
+    <Compile Include="Services\ModulesInstaller.cs" />
+    <Compile Include="ViewModels\Base\ViewModel.cs" />
+    <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Models\Configuration.cs" />
+    <Compile Include="Models\Module.cs" />
+    <Compile Include="Models\ProgressBar.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -119,15 +126,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Background.PNG" />
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include="MainWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.8">
@@ -146,6 +148,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\favicon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Views\MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icon.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

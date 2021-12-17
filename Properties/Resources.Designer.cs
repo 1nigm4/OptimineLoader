@@ -81,6 +81,15 @@ namespace OptimineLoader.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на https://launch.optimine.su/.
+        /// </summary>
+        internal static string WebDir {
+            get {
+                return ResourceManager.GetString("WebDir", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Поиск локализованного ресурса типа System.Byte[].
         /// </summary>
         internal static byte[] XamlRadialProgressBar_DotNet {

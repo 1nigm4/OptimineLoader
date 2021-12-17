@@ -4,16 +4,20 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OptimineLoader"
-        xmlns:xrpb="clr-namespace:XamlRadialProgressBar;assembly=XamlRadialProgressBar.DotNet" 
-        x:Class="OptimineLoader.MainWindow"
+        xmlns:xrpb="clr-namespace:XamlRadialProgressBar;assembly=XamlRadialProgressBar.DotNet"
+        xmlns:vm="clr-namespace:OptimineLoader.ViewModels"
+        x:Class="OptimineLoader.Views.MainWindow"
         mc:Ignorable="d"
-        Title="OptimineLoader" Height="500" Width="900" ResizeMode="NoResize" WindowStyle="None" MouseDown="Window_onMouseDown" MouseMove="Window_onMouseMove" WindowStartupLocation="CenterScreen" Icon="Resources/favicon.ico">
+        Title="OptimineLoader" Height="500" Width="900" ResizeMode="NoResize" WindowStyle="None" MouseDown="Window_onMouseDown" MouseMove="Window_onMouseMove" WindowStartupLocation="CenterScreen" Loaded="Window_onLoaded" Icon="/Resources/favicon.ico">
+    <Window.DataContext>
+        <vm:MainWindowViewModel/>
+    </Window.DataContext>
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="Resources/Background.PNG"/>
+            <ImageBrush ImageSource="/Resources/Background.PNG"/>
         </Grid.Background>
 
-        <Button x:Name="Rollup" Click="Rollup_onClick" Margin="829,12,52,469">
+        <Button x:Name="Rollup" Click="Rollup_onClick" Margin="829,12,52,469" Cursor="Hand">
             <Button.ToolTip>
                 <ToolTip Background="Transparent" BorderThickness="0">
                     <Border Background="Black" CornerRadius="5" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="-5,-5,0,0">
@@ -39,10 +43,10 @@
             </Button.ToolTip>
         </Button>
 
-        <xrpb:RadialProgressBar x:Name="ProgressBarFull" Margin="83,188,637,132" Foreground="#FF5CDA8B" InnerBackgroundBrush="#FF3F4551" OuterBackgroundBrush="Transparent" Background="#00000000" Padding="15"/>
-        <TextBlock x:Name="CurrentOperation" Text="Загрузка..." TextAlignment="Center" Margin="83,401,637,47" Foreground="#FFC8C8C8" FontWeight="Bold" FontFamily="Arial Black" Padding="5" TextWrapping="Wrap"/>
+        <xrpb:RadialProgressBar Value="{Binding ProgressBar.CurrentValue}" Margin="83,188,637,132" Foreground="#FF5CDA8B" InnerBackgroundBrush="#FF3F4551" OuterBackgroundBrush="Transparent" Background="#00000000" Padding="15"/>
+        <TextBlock Name="Details" Text="{Binding ProgressBar.Details}" TextAlignment="Center" Margin="83,401,637,47" Foreground="#FFC8C8C8" FontWeight="Bold" FontFamily="Arial Black" Padding="5" TextWrapping="Wrap"/>
 
-        <xrpb:RadialProgressBar x:Name="ProgressBarDownloading" Margin="94,199,648,143" Foreground="#FF4BE8E1" InnerBackgroundBrush="#FF3F4551" OuterBackgroundBrush="Transparent" Background="#00000000" Padding="15" IndeterminateSpeedRatio="0.5" ArcWidth="5" IsHitTestVisible="False"/>
-        <Label x:Name="ProgressBarValue" Content="0%" Margin="83,256,637,210" Background="#00000000" Foreground="#FF5CDA8B" FontSize="24" FontWeight="Bold" FontFamily="Arial" Width="180" HorizontalContentAlignment="Center"/>
+        <xrpb:RadialProgressBar Name="DownloadBar" Margin="94,199,648,143" Foreground="#FF4BE8E1" InnerBackgroundBrush="#FF3F4551" OuterBackgroundBrush="Transparent" Background="#00000000" Padding="15" IndeterminateSpeedRatio="0.5" ArcWidth="5" IsIndeterminate="True" IsHitTestVisible="False"/>
+        <TextBlock Text="{Binding ProgressBar.CurrentValue, StringFormat='\{0}%'}" TextAlignment="Center" Margin="107,262,661,204" Background="#00000000" Foreground="#FF5CDA8B" FontSize="24" FontWeight="Bold" FontFamily="Arial"/>
     </Grid>
 </Window>
