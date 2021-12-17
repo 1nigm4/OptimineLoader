@@ -4,8 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OptimineLoader"
-        xmlns:vm="clr-namespace:OptimineLoader.ViewModels"
-        xmlns:xrpb="clr-namespace:XamlRadialProgressBar;assembly=XamlRadialProgressBar.DotNet" 
+        xmlns:xrpb="http://XamlRadialProgressBar/DotNet" 
         x:Class="OptimineLoader.Views.MainWindow"
         mc:Ignorable="d"
         Title="OptimineLoader" Height="500" Width="900" ResizeMode="NoResize" WindowStyle="None" MouseDown="Window_onMouseDown" MouseMove="Window_onMouseMove" WindowStartupLocation="CenterScreen" Icon="/Resources/favicon.ico">
@@ -14,7 +13,7 @@
             <ImageBrush ImageSource="/Resources/Background.PNG"/>
         </Grid.Background>
 
-        <Button x:Name="Rollup" Click="Rollup_onClick" Margin="829,12,52,469">
+        <Button x:Name="Rollup" Click="Rollup_onClick" Margin="829,12,52,469" Cursor="Hand">
             <Button.ToolTip>
                 <ToolTip Background="Transparent" BorderThickness="0">
                     <Border Background="Black" CornerRadius="5" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="-5,-5,0,0">

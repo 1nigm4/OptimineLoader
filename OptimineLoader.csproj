@@ -56,19 +56,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>6304307868336F746D43E4C8005C58016F7DD23E</ManifestCertificateThumbprint>
+    <ApplicationIcon>Resources\favicon.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>OptimineLoader_TemporaryKey.pfx</ManifestKeyFile>
-  </PropertyGroup>
-  <PropertyGroup>
-    <GenerateManifests>true</GenerateManifests>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
     <SignManifests>false</SignManifests>
-  </PropertyGroup>
-  <PropertyGroup>
-    <ApplicationIcon>Resources\favicon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Costura, Version=5.7.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -235,6 +229,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Configuration.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ModulesChecker.cs" />
     <Compile Include="Services\ModulesInstaller.cs" />
     <Compile Include="Models\Launcher.cs" />

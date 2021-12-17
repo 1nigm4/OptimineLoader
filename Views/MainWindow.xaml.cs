@@ -7,7 +7,8 @@ namespace OptimineLoader.Views
 {
     public partial class MainWindow : Window
     {
-        private Point _mouseOffset;
+        private Point windowOffset;
+        private Point mouseOffset;
 
         public MainWindow()
         {
@@ -22,15 +23,20 @@ namespace OptimineLoader.Views
                 Launcher.Start();
         }
 
-        private void Window_onMouseDown(object sender, MouseButtonEventArgs e) => _mouseOffset = e.GetPosition(this);
+        private void Window_onMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            windowOffset = new Point(Left, Top);
+            mouseOffset = e.GetPosition(this);
+        }
 
         private void Window_onMouseMove(object sender, MouseEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
             {
-                var mouseScreen = PointToScreen(Mouse.GetPosition(this));
-                this.Left = mouseScreen.X - _mouseOffset.X;
-                this.Top = mouseScreen.Y - _mouseOffset.Y;
+                Point mousePosition = e.GetPosition(this);
+                windowOffset += (mousePosition - mouseOffset);
+                this.Left = windowOffset.X;
+                this.Top = windowOffset.Y;
             }
         }
 
