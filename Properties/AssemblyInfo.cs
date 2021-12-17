@@ -8,11 +8,11 @@ using System.Windows;
 // набор атрибутов. Измените значения этих атрибутов, чтобы изменить сведения,
 // связанные со сборкой.
 [assembly: AssemblyTitle("OptimineLoader")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("OptimineLoader")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Optimine")]
 [assembly: AssemblyProduct("OptimineLoader")]
-[assembly: AssemblyCopyright("Copyright ©  2021")]
+[assembly: AssemblyCopyright("1nigm4")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
