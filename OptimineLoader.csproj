@@ -6,6 +6,7 @@
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
     <ApplicationIcon>Resources\favicon.ico</ApplicationIcon>
+    <Copyright>1nigm4</Copyright>
   </PropertyGroup>
 
   <ItemGroup>
