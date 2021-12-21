@@ -29,7 +29,7 @@ namespace OptimineLoader
             if (args.Name.Contains("XamlRadialProgressBar"))
             {
                 AppDomain.CurrentDomain.AssemblyResolve -= CurrentDomain_AssemblyResolve;
-                return Assembly.Load(OptimineLoader.Properties.Resources.XamlRadialProgressBar_DotNet);
+                return Assembly.Load(OptimineLoader.Properties.Resources.XamlRadialProgressBar);
             }
             return null;
         }
