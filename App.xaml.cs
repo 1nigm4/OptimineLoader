@@ -11,7 +11,6 @@ namespace OptimineLoader
     {
         public App() : base()
         {
-            AppDomain.CurrentDomain.AssemblyResolve += new ResolveEventHandler(CurrentDomain_AssemblyResolve);
             Dispatcher.UnhandledException += (s, e) =>
             {
                 var exception = e.Exception;
@@ -23,15 +22,6 @@ namespace OptimineLoader
                 window.DownloadBar.IsIndeterminate = false;
                 e.Handled = true;
             };
-        }
-        Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args)
-        {
-            if (args.Name.Contains("XamlRadialProgressBar"))
-            {
-                AppDomain.CurrentDomain.AssemblyResolve -= CurrentDomain_AssemblyResolve;
-                return Assembly.Load(OptimineLoader.Properties.Resources.XamlRadialProgressBar);
-            }
-            return null;
         }
     }
 }

@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net6.0-windows</TargetFramework>
-    <Nullable>enable</Nullable>
+    <TargetFramework>net472</TargetFramework>
+    <LangVersion>8.0</LangVersion>
     <UseWPF>true</UseWPF>
     <ApplicationIcon>Resources\favicon.ico</ApplicationIcon>
     <Copyright>1nigm4</Copyright>
@@ -16,14 +16,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Resources\XamlRadialProgressBar.dll" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="XamlRadialProgressBar">
-      <HintPath>Resources\XamlRadialProgressBar.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
+    <PackageReference Include="Costura.Fody" Version="5.7.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="XamlRadialProgressBar" Version="1.0.3" />
   </ItemGroup>
 
   <ItemGroup>
